@@ -1,0 +1,244 @@
+images {
+   image: "../data/bgwater3.jpg" COMP;
+}
+
+externals {
+   external: "elm";
+}
+
+collections {
+   group { name: "main";
+      data {
+         item: "pref_size" "500x500";
+      }
+      parts {
+         part { name: "Image01";
+            type: IMAGE;
+            description { state: "default" 0;
+               rel1 {
+                  offset: 2 14;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 493 488;
+               }
+               image {
+                  normal: "../data/bgwater3.jpg";
+                  middle: DEFAULT;
+               }
+               fill {
+               }
+            }
+            description { state: "@backfade@0.00" 0;
+               rel1 {
+                  offset: 2 14;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 493 488;
+               }
+               image {
+                  normal: "../data/bgwater3.jpg";
+                  middle: DEFAULT;
+               }
+               fill {
+               }
+            }
+            description { state: "@backfade@1.00" 0;
+               color: 255 255 255 100;
+               rel1 {
+                  offset: 2 14;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 493 488;
+               }
+               image {
+                  normal: "../data/bgwater3.jpg";
+                  middle: DEFAULT;
+               }
+               fill {
+               }
+            }
+         }
+         part { name: "Rectangle01";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 255 255 255 120;
+               rel1 {
+                  offset: 14 22;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 482 114;
+               }
+            }
+            description { state: "@backfade@0.00" 0;
+               color: 255 255 255 120;
+               rel1 {
+                  offset: 14 22;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 482 114;
+               }
+            }
+            description { state: "@backfade@1.00" 0;
+               color: 255 255 255 120;
+               rel1 {
+                  offset: 14 22;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 482 483;
+               }
+            }
+         }
+         part { name: "Rectangle02";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 255 253 252 100;
+               rel1 {
+                  offset: 289 45;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 464 87;
+               }
+            }
+            description { state: "@text_move@0.00" 0;
+               color: 255 253 252 10;
+               rel1 {
+                  offset: 289 45;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 464 87;
+               }
+            }
+            description { state: "@text_move@1.00" 0;
+               color: 255 253 252 100;
+               rel1 {
+                  offset: 181 264;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 356 306;
+               }
+            }
+         }
+         part { name: "Text01";
+            type: TEXT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: 250 -57;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 500 193;
+               }
+               text {
+                  text: "םינמז";
+                  font: "Sans";
+                  size: 16;
+               }
+            }
+            description { state: "@text_move@0.00" 0;
+               color: 255 255 255 0;
+               rel1 {
+                  offset: 250 -57;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 500 193;
+               }
+               text {
+                  text: "םינמז";
+                  font: "Sans";
+                  size: 16;
+               }
+            }
+            description { state: "@text_move@1.00" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: 133 162;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 383 412;
+               }
+               text {
+                  text: "םינמז";
+                  font: "Sans";
+                  size: 16;
+               }
+            }
+         }
+      }
+      programs {
+         program { name: "@text_move@end";
+            action: SIGNAL_EMIT "animation,end" "text_move";
+         }
+         program { name: "@text_move@0.00";
+            signal: "animation,play";
+            source: "text_move";
+            action: STATE_SET "@text_move@0.00" 0.00;
+            target: "Rectangle02";
+            target: "Text01";
+            after: "@text_move@1.00";
+         }
+         program { name: "@text_move@stop";
+            signal: "animation,stop";
+            source: "text_move";
+            action: ACTION_STOP;
+            target: "@text_move@0.00";
+            target: "@text_move@end";
+            target: "@text_move@1.00";
+         }
+         program { name: "@text_move@1.00";
+            action: STATE_SET "@text_move@1.00" 0.00;
+            transition: LINEAR 1.00000;
+            target: "Text01";
+            target: "Rectangle02";
+            after: "@text_move@end";
+         }
+         program { name: "@backfade@end";
+            action: SIGNAL_EMIT "animation,end" "backfade";
+         }
+         program { name: "@backfade@0.00";
+            signal: "animation,play";
+            source: "backfade";
+            action: STATE_SET "@backfade@0.00" 0.00;
+            target: "Image01";
+            target: "Rectangle01";
+            after: "@backfade@1.00";
+         }
+         program { name: "@backfade@stop";
+            signal: "animation,stop";
+            source: "backfade";
+            action: ACTION_STOP;
+            target: "@backfade@0.00";
+            target: "@backfade@end";
+            target: "@backfade@1.00";
+         }
+         program { name: "@backfade@1.00";
+            action: STATE_SET "@backfade@1.00" 0.00;
+            transition: LINEAR 1.00000;
+            target: "Image01";
+            target: "Rectangle01";
+            after: "@backfade@end";
+         }
+         program { name: "start";
+            signal: "mouse,down,*";
+            source: "Image01";
+            after: "@text_move@0.00";
+            after: "@backfade@0.00";
+         }
+      }
+   }
+}
+
