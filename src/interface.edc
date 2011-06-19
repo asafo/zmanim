@@ -1,0 +1,81 @@
+images {
+   image: "y.png" COMP;
+   image: "bgwater3.jpg" COMP;
+}
+
+externals {
+   external: "elm";
+}
+
+collections {
+   group { name: "main";
+      data {
+         item: "pref_size" "675x495";
+      }
+      parts {
+         part { name: "Rectangle01";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: 1 -4;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 677 492;
+               }
+            }
+         }
+         part { name: "Rectangle02";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 84 22 255 183;
+               rel1 {
+                  offset: 20 16;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 657 471;
+               }
+            }
+         }
+         part { name: "Rectangle03";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 255 255 255 69;
+               rel1 {
+                  offset: 27 145;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 647 303;
+               }
+            }
+         }
+         part { name: "message";
+            type: TEXT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: 32 -6;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 644 457;
+               }
+               text {
+                  text: "YOUR TEXT HERE";
+                  font: "Sans";
+                  size: 42;
+                  fit: 1 0;
+               }
+            }
+         }
+      }
+   }
+}
+

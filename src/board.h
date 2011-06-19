@@ -10,13 +10,14 @@ class Board
     Board (const int width, const int height);
     
     void display();
+    void message(const char *text);
 	
  private:
-    Evas_Object *create_splash_group(Evas *canvas, const char *text, 
-				     const int screenWidth, const int screenHeight);
+    void init_e();
+    void init_edje_file(const char *filename);
     
-    Ecore_Evas *window;
-    Evas *canvas;
-    Evas_Object *edje;
-    const char *text;
+    Ecore_Evas *_window;
+    Evas *_canvas;
+    Evas_Object *_edje;
+    int _width, _height;
 };
