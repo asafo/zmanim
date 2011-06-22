@@ -9,6 +9,7 @@ Board::Board (const int width, const int height) : _width(width), _height(height
 	EINA_LOG_CRIT("could not create window.");	    
 	    //	    throw new 
     }
+    ecore_evas_borderless_set(_window, 1);
    
     _canvas = ecore_evas_get(_window);   
     
@@ -33,15 +34,23 @@ Board::Board (const int width, const int height) : _width(width), _height(height
 void Board::display()
 {    
     ecore_evas_show(_window);
+    _controller->onDisplay();
     ecore_main_loop_begin();
 
     evas_object_del(_edje);
     ecore_evas_free(_window);	
 }
 
-void Board::message(char const*)
-{
-    
+void Board::message(char const* text)
+{    
+    if (text)
+	    {
+		if (!edje_object_part_text_set(_edje, "message", text))
+		    {
+			EINA_LOG_WARN("could not set the text. "
+				      "Maybe part 'message' does not exist?");
+		    }
+	    }     
 }
 
 
@@ -66,20 +75,10 @@ void Board::init_edje_file(const char *filename)
 		evas_object_del(_edje);
 		return;
 	    }
-    
-    /*if (text)
-	    {
-		if (!edje_object_part_text_set(edje, "text", text))
-		    {
-			EINA_LOG_WARN("could not set the text. "
-				      "Maybe part 'text' does not exist?");
-		    }
-	    }
-    */
-	evas_object_move(_edje, 50, 50);
+
+    //	evas_object_move(_edje, 50, 50);
 	evas_object_resize(_edje, _width, _height);
 	evas_object_show(_edje);
-
 }
 
 

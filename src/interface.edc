@@ -1,8 +1,3 @@
-images {
-   image: "y.png" COMP;
-   image: "bgwater3.jpg" COMP;
-}
-
 externals {
    external: "elm";
 }
@@ -36,8 +31,7 @@ collections {
                   offset: 20 16;
                }
                rel2 {
-                  relative: 0 0;
-                  offset: 657 471;
+                  offset: -20 -16;
                }
             }
          }
@@ -50,8 +44,25 @@ collections {
                   offset: 27 145;
                }
                rel2 {
-                  relative: 0 0;
-                  offset: 647 303;
+                  offset: -27 -145;
+               }
+            }
+            description { state: "@message_hide@0.00" 0;
+               color: 255 255 255 69;
+               rel1 {
+                  offset: 27 145;
+               }
+               rel2 {
+                  offset: -27 -145;
+               }
+            }
+            description { state: "@message_hide@1.00" 0;
+               color: 255 255 255 0;
+               rel1 {
+                  offset: 27 145;
+               }
+               rel2 {
+                  offset: -27 -145;
                }
             }
          }
@@ -61,17 +72,151 @@ collections {
             description { state: "default" 0;
                color: 0 0 0 255;
                rel1 {
-                  offset: 32 -6;
+                  offset: 32 6;
                }
                rel2 {
-                  relative: 0 0;
-                  offset: 644 457;
+                  offset: -32 -6;
                }
                text {
                   text: "YOUR TEXT HERE";
                   font: "Sans";
                   size: 42;
                   fit: 1 0;
+               }
+            }
+            description { state: "@message_hide@0.00" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: 32 6;
+               }
+               rel2 {
+                  offset: -32 -6;
+               }
+               text {
+                  text: "YOUR TEXT HERE";
+                  font: "Sans";
+                  size: 42;
+                  fit: 1 0;
+               }
+            }
+            description { state: "@message_hide@1.00" 0;
+               color: 0 0 0 0;
+               rel1 {
+                  offset: 32 6;
+               }
+               rel2 {
+                  offset: -32 -6;
+               }
+               text {
+                  text: "YOUR TEXT HERE";
+                  font: "Sans";
+                  size: 42;
+                  fit: 1 0;
+               }
+            }
+         }
+      }
+      programs {
+         program { name: "@message_hide@0.00";
+            signal: "animation,play";
+            source: "message_hide";
+            action: STATE_SET "@message_hide@0.00" 0.00;
+            target: "Rectangle03";
+            target: "message";
+            after: "@message_hide@1.00";
+         }
+         program { name: "@message_hide@stop";
+            signal: "animation,stop";
+            source: "message_hide";
+            action: ACTION_STOP;
+            target: "@message_hide@0.00";
+            target: "@message_hide@end";
+            target: "@message_hide@1.00";
+         }
+         program { name: "@message_hide@end";
+            action: SIGNAL_EMIT "animation,end" "message_hide";
+         }
+         program { name: "@message_hide@1.00";
+            action: STATE_SET "@message_hide@1.00" 0.00;
+            transition: LINEAR 1.00000;
+            target: "message";
+            target: "Rectangle03";
+            after: "@message_hide@end";
+         }
+      }
+   }
+   group { name: "screen2";
+      data {
+         item: "pref_size" "500x500";
+      }
+      parts {
+         part { name: "Rectangle01";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               rel1 {
+                  offset: 2 1;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 499 498;
+               }
+            }
+         }
+         part { name: "Rectangle02";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 209 194 230 227;
+               rel1 {
+                  offset: 15 12;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 486 56;
+               }
+            }
+         }
+         part { name: "top";
+            type: SWALLOW;
+            description { state: "default" 0;
+               rel1 {
+                  offset: 19 71;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 482 263;
+               }
+            }
+         }
+         part { name: "bottom";
+            type: SWALLOW;
+            description { state: "default" 0;
+               rel1 {
+                  offset: 31 276;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 482 484;
+               }
+            }
+         }
+         part { name: "Text01";
+            type: TEXT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: 120 -88;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 370 162;
+               }
+               text {
+                  text: "YOUR TEXT HERE";
+                  font: "Sans";
+                  size: 16;
                }
             }
          }

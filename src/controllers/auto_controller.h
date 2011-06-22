@@ -6,6 +6,7 @@ class AutoController : public IController
  public:
     AutoController(Board *board);
     void onDisplay();
- private:
+    void timer_expired();
+ private:    
     Board *_board;
 };
