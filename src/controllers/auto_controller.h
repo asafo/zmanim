@@ -1,5 +1,6 @@
 #include "../controller.h"
 #include "../board.h"
+#include "../board_elements/day_times/day_times.h"
 
 class AutoController : public IController
 {
@@ -9,4 +10,5 @@ class AutoController : public IController
     void timer_expired();
  private:    
     Board *_board;
+    DayTimes *_day_times;
 };

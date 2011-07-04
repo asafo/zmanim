@@ -9,18 +9,20 @@ AutoController::AutoController(Board *board) : _board(board)
 {
     _board->set_controller(this);
     __instance = this;
+    _day_times = new DayTimes();
 }
 
 void AutoController::timer_expired()
 {
     printf("timer_expired\n");
     _board->message("Text");
+    _board->add_element(_day_times);
 }
 
 void timer_handler (int signum)
 {
     __instance->timer_expired();
-    alarm(2);
+    //    alarm(2);
 }
 
 void AutoController::onDisplay()

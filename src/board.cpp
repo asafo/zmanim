@@ -81,4 +81,8 @@ void Board::init_edje_file(const char *filename)
 	evas_object_show(_edje);
 }
 
+void Board::add_element(IBoardElement *element)
+{
+}
+
 

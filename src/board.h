@@ -7,6 +7,7 @@
 #include <Edje.h>
 
 #include "controller.h"
+#include "board_elements/board_element_iface.h"
 
 class Board
 {
@@ -16,6 +17,7 @@ class Board
     void display();
     void message(const char *text);
     void set_controller(IController *controller) { _controller = controller; };
+    void add_element(IBoardElement *element);
  private:
     void init_e();
     void init_edje_file(const char *filename);
