@@ -1,6 +1,6 @@
 #include "board.h"
 
-Board::Board (const int width, const int height) : _width(width), _height(height)
+Board::Board (const int width, const int height, string theme) : _width(width), _height(height), _theme(theme)
 {
     init_e();
 
@@ -22,7 +22,7 @@ Board::Board (const int width, const int height) : _width(width), _height(height
     //    edje = create_splash_group(canvas, text, width, height);
     ///    if (!edje)
 	// throw new 
-    init_edje_file("interface.edj");
+    init_edje_file(_theme, "main");
 }
 
 /*Board::~Board()
@@ -34,7 +34,7 @@ Board::Board (const int width, const int height) : _width(width), _height(height
 void Board::display()
 {    
     ecore_evas_show(_window);
-    _controller->onDisplay();
+    //    _controller->onDisplay();
     ecore_main_loop_begin();
 
     evas_object_del(_edje);
@@ -63,13 +63,13 @@ void Board::init_e()
     edje_init();
 }
 
-void Board::init_edje_file(const char *filename)
+void Board::init_edje_file(std::string file, std::string group)
 {
-    if (!edje_object_file_set(_edje, filename, "main"))
+    if (!edje_object_file_set(_edje, file.c_str(), group.c_str()))
 	{
 	    Edje_Load_Error err = edje_object_load_error_get(_edje);
 		const char *errmsg = edje_load_error_str(err);
-		EINA_LOG_ERR("could not load 'main' from %s .edj: %s", filename,
+		EINA_LOG_ERR("could not load '%s' from %s .edj: %s", group.c_str(), file.c_str(),
 			     errmsg);
 		
 		evas_object_del(_edje);
@@ -81,8 +81,20 @@ void Board::init_edje_file(const char *filename)
 	evas_object_show(_edje);
 }
 
-void Board::add_element(IBoardElement *element)
+void Board::add_module(IModule *module)
 {
+    _modules.push_back(module);
+    module->render(this);
 }
+
+void Board::set_text(string part, string text)
+{    
+    if (!edje_object_part_text_set(_edje, part.c_str(), text.c_str()))
+	{
+	    EINA_LOG_WARN("could not set the text. "
+			  "Maybe part 'message' does not exist?");
+	}     
+}
+
 
 

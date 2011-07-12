@@ -2,9 +2,9 @@ CFLAGS:=`pkg-config --cflags eina evas ecore ecore-evas edje libhdate`
 LDFLAGS:=`pkg-config --libs eina evas ecore ecore-evas edje libhdate`
 
 HEADERS:=board.h
-SOURCES=zmanim.cpp board.cpp controllers/auto_controller.cpp board_elements/day_times/day_times.cpp
+SOURCES=zmanim.cpp board.cpp modules/date.cpp
 
-all: zmanim zmanim.edj interface.edj board_elements/day_times/day_times.edj
+all: zmanim basic.edj
 
 zmanim: ${SOURCES}
 	g++ -g ${SOURCES} ${CFLAGS} ${LDFLAGS} -o zmanim

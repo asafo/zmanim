@@ -1,0 +1,68 @@
+externals {
+   external: "elm";
+}
+
+collections {
+   group { name: "main";
+      data {
+         item: "pref_size" "500x500";
+      }
+      parts {
+      }
+   }
+   group { name: "date";
+      data {
+         item: "pref_size" "400x100";
+      }
+      parts {
+         part { name: "Rectangle01";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 255 173 178 122;
+               rel1 {
+                  offset: 1 2;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 398 99;
+               }
+            }
+         }
+         part { name: "Rectangle02";
+            type: RECT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 0 164 227 171;
+               rel1 {
+                  offset: 7 35;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 393 66;
+               }
+            }
+         }
+         part { name: "date_text";
+            type: TEXT;
+            mouse_events: 0;
+            description { state: "default" 0;
+               color: 0 0 0 255;
+               rel1 {
+                  offset: -2 26;
+               }
+               rel2 {
+                  relative: 0 0;
+                  offset: 400 76;
+               }
+               text {
+                  text: "10 Tamuz 5771";
+                  font: "Sans";
+                  size: 16;
+               }
+            }
+         }
+      }
+   }
+}
+
