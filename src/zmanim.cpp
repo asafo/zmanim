@@ -1,6 +1,8 @@
 #include <iostream>
 #include <hdatepp.h>
 
+#include <locale.h>
+
 #include "board.h"
 #include "modules/date.h"
 
@@ -9,6 +11,7 @@ using namespace hdate;
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "he_IL.utf-8");
     Hdate h;
 
     Board board(1024, 768, "basic.edj");

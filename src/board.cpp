@@ -87,9 +87,16 @@ void Board::add_module(IModule *module)
     module->render(this);
 }
 
-void Board::set_text(string part, string text)
+string wstring2string(wstring wstr)
+{
+    string str(wstr.length(),' ');
+    copy(wstr.begin(),wstr.end(),str.begin());
+    return str;
+}
+
+void Board::set_text(string part, wstring text)
 {    
-    if (!edje_object_part_text_set(_edje, part.c_str(), text.c_str()))
+    if (!edje_object_part_text_set(_edje, part.c_str(), wstring2string(text).c_str()))
 	{
 	    EINA_LOG_WARN("could not set the text. "
 			  "Maybe part 'message' does not exist?");

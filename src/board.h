@@ -27,7 +27,7 @@ class Board : public IBoard
     // module interface:
     void load_group(string group)     { init_edje_file(_theme, group); }
     void get_canvas() {};    
-    void set_text(string part, string text);
+    void set_text(string part, wstring text);
     //    void set_controller(IController *controller) { _controller = controller; };
     //  void add_element(IBoardElement *element);
  private:
