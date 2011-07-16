@@ -1,10 +1,11 @@
-CFLAGS:=`pkg-config --cflags eina evas ecore ecore-evas edje libhdate`
-LDFLAGS:=`pkg-config --libs eina evas ecore ecore-evas edje libhdate`
+CFLAGS:=`pkg-config --cflags eina evas ecore ecore-evas edje libhdate fribidi`
+LDFLAGS:=`pkg-config --libs eina evas ecore ecore-evas edje libhdate fribidi`
 
 HEADERS:=board.h
-SOURCES=zmanim.cpp board.cpp modules/date.cpp
+SOURCES:=zmanim.cpp board.cpp modules/date.cpp
+EDJE_FILES:=basic.edj
 
-all: zmanim basic.edj
+all: zmanim ${EDJE_FILES}
 
 zmanim: ${SOURCES}
 	g++ -g ${SOURCES} ${CFLAGS} ${LDFLAGS} -o zmanim
@@ -13,4 +14,4 @@ zmanim: ${SOURCES}
 	edje_cc $<
 
 clean:
-	rm -f zmanim zmanim.edj timebox.edj
+	rm -f zmanim ${EDJE_FILES}
