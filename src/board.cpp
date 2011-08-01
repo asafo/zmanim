@@ -1,4 +1,7 @@
 #include "board.h"
+#include <iostream>
+
+using namespace std;
 
 Board::Board (const int width, const int height, string theme) : _width(width), _height(height), _theme(theme)
 {
@@ -65,6 +68,7 @@ void Board::init_e()
 
 void Board::init_edje_file(std::string file, std::string group)
 {
+    cout<<"init_edje_file("<<file<<", "<<group<<")"<<endl;
     if (!edje_object_file_set(_edje, file.c_str(), group.c_str()))
 	{
 	    Edje_Load_Error err = edje_object_load_error_get(_edje);

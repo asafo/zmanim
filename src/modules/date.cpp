@@ -16,7 +16,7 @@ using namespace std;
 
 // WARNING: If the allocation isn't enough it will crash.
 //  But I seems safe now.
-string LineToBidiText(string line)
+string LineToBidiText(const string line)
 {
     string out="";
 
@@ -84,11 +84,12 @@ string LineToBidiText(string line)
 
     return out;
 }
+
 void Date::render(IBoard *board)
 {
     // hdate
     Hdate h;
-    h.set_hdate(12,12,5771);
+    //    h.set_hdate(12,12,5771);
     h.set_israel();
 
     string datestr = LineToBidiText(h.get_format_date(0));
